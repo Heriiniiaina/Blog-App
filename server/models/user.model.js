@@ -19,6 +19,26 @@ const UserSchema = mongoose.Schema({
         required:true,
         select:false
     },
-    
+    image:{
+        type:String
+    },
+    validationCode:{
+        type:String,
+        select:false
+    },
+    validationCodeValidity:{
+        type:Number,
+        select:false
+    },
+    forgotPasswordCode:{
+        type:String,
+        select:false
+    },
+    forgotPasswordCodeValidity:{
+        type:String,
+        select:falses
+    }
     
 })
+
+export const User = mongoose.model("User",UserSchema)
