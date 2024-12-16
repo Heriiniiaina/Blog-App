@@ -9,6 +9,7 @@ export const createNewPost = async (postData)=>{
             user:postData.userId
         })
         await post.save()
+        return post
     } catch (error) {
         throw new ErrorHandler(error.message)
     }
