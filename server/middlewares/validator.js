@@ -18,3 +18,10 @@ export const registerSchema = Joi.object({
     })
 
 })
+
+export const postSchema = Joi.object({
+    content:Joi.string().required().min(4).messages({
+        "string.empty":"Veuillez ajouter du contenu",
+        "string.min":"Le contenu doit au moins contenir 4 caractères"
+    })
+})
