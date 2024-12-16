@@ -16,6 +16,7 @@ export const register = async(req,res,next)=>{
             message:"Compte créé avec succées"
         })
     } catch (error) {
+        console.log(error)
         next(new ErrorHandler(error.message))
     }
 }
