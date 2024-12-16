@@ -33,3 +33,9 @@ export const getAllUserInfo = async(email)=>{
         throw new ErrorHandler("Auccun utilisateur est enregistré avec cette email",404)
     return user
 }
+export const getUserById = async(userId)=>{
+    const user = await User.findById(userId)
+    if(!user)
+        throw next("Utilisateur non trouvé",404)
+    return user
+}
