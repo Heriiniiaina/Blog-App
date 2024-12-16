@@ -22,9 +22,14 @@ export const createNewUser = async(userData)=>{
 export const getUserDataByEmail = async(email)=>{
         const user = await User.findOne({email:email}).select("+password")
         if(!user){
-            throw new ErrorHandler("Auccun utilisateur est enregistré avec cette email",400)
+            throw new ErrorHandler("Auccun utilisateur est enregistré avec cette email",404)
         }
         return user
+}
 
-   
+export const getAllUserInfo = async(email)=>{
+    const user =  await User.findOne({email:email}).select("+verificationCode +verificationCodeValidity")
+    if(!user)
+        throw new ErrorHandler("Auccun utilisateur est enregistré avec cette email",404)
+    return user
 }

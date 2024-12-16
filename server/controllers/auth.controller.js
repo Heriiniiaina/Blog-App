@@ -1,8 +1,10 @@
 import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
-import { createNewUser, getUserDataByEmail } from "../services/auth.service.js"
+import { createNewUser, getAllUserInfo, getUserDataByEmail } from "../services/auth.service.js"
 import { comparePassword } from "../utils/bcrypt.config.js"
+import { hashCode } from "../utils/hashCode.helper.js"
+import { transport } from "../utils/sendEmail.helper.js"
 import { generateToken } from "../utils/token.helper.js"
 
 export const register = async(req,res,next)=>{
@@ -39,6 +41,37 @@ export const login = async(req,res,next)=>{
             message:"connexion reussi",
             token
         })
+    } catch (error) {
+        next(new ErrorHandler(error.message,error.statusCode))
+    }
+}
+
+export const sendVerificationEmail = async(req,res,next)=>{
+    const {email} = req.body
+    if(!email)
+        return next(new ErrorHandler("Non autorisé",403))
+    try {
+        const user = await getAllUserInfo(email)
+        if(user.verified)
+            throw new ErrorHandler("Utilisateur déja verifié",400)
+        const code = Math.floor(Math.random() * 1000000).toString()
+        const info = transport.sendMail({
+            from:process.env.SENDING_EMAIL_ADRESS,
+            to:user.email,
+            subject:"Verification code",
+            html:"<h1>" + code + "</h1>"
+        })
+        if((await info).accepted==user.email){
+            const hashedCode = hashCode(code,process.env.HMAC_KEY)
+            user.verificationCode = hashedCode
+            user.verificationCodeValidity = Date.now()
+            await user.save()
+            res.status(200).json({
+                success:true,
+                message:"Code envoyer à votre email"
+            })
+        }
+        throw new ErrorHandler("Il y a une erreur")
     } catch (error) {
         next(new ErrorHandler(error.message,error.statusCode))
     }

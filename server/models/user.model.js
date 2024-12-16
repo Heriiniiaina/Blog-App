@@ -23,7 +23,8 @@ const UserSchema = mongoose.Schema({
         type:String
     },
     verified:{
-        type:Boolean
+        type:Boolean,
+        default:false
     },
     verificationCode:{
         type:String,
