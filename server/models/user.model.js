@@ -22,11 +22,14 @@ const UserSchema = mongoose.Schema({
     image:{
         type:String
     },
-    validationCode:{
+    verified:{
+        type:Boolean
+    },
+    verificationCode:{
         type:String,
         select:false
     },
-    validationCodeValidity:{
+    verificationCodeValidity:{
         type:Number,
         select:false
     },
