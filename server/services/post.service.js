@@ -23,3 +23,12 @@ export const getAllPost = async ()=>{
         throw new ErrorHandler(error.message)
     }
 }
+
+export const getPostByUserId = async(userId)=>{
+    try {
+        const posts = await Post.find({user:userId})
+        return posts
+    } catch (error) {
+        throw new ErrorHandler(error.message)
+    }
+}
