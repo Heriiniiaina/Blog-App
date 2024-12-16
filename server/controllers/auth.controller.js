@@ -43,3 +43,4 @@ export const login = async(req,res,next)=>{
         next(new ErrorHandler(error.message,error.statusCode))
     }
 }
+

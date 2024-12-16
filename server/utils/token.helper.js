@@ -12,3 +12,4 @@ export const generateToken =(user)=>{
     const token =  jwt.sign(userData,process.env.TOKEN_SECRET,{expiresIn:"8h"})
     return token
 }
+
