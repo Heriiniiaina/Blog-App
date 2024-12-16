@@ -1,6 +1,7 @@
 import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
-import { createNewUser } from "../services/auth.service.js"
+import { User } from "../models/user.model.js"
+import { createNewUser, getUserDataByEmail } from "../services/auth.service.js"
 
 export const register = async(req,res,next)=>{
     const {nom,prenom,email,password} = req.body
@@ -18,5 +19,19 @@ export const register = async(req,res,next)=>{
     } catch (error) {
         console.log(error)
         next(new ErrorHandler(error.message))
+    }
+}
+export const login = async(req,res,next)=>{
+    const {email,password} =req.body
+    if(!email || !password)
+        return next(new ErrorHandler("Veuillez remplir le formulaire",400))
+    try {
+        const user = await getUserDataByEmail(email)
+        
+        res.status(200).json({
+            user
+        })
+    } catch (error) {
+        next(new ErrorHandler(error.message,error.statusCode))
     }
 }
