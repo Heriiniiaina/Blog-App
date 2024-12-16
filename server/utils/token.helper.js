@@ -9,6 +9,6 @@ export const generateToken =(user)=>{
         prenom:user.prenom,
         email:user.email
     }
-    const token =  jwt.sign(user,process.env.TOKEN_SECRET)
+    const token =  jwt.sign(userData,process.env.TOKEN_SECRET,{expiresIn:"8h"})
     return token
 }

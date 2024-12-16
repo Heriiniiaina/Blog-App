@@ -2,6 +2,8 @@ import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { createNewUser, getUserDataByEmail } from "../services/auth.service.js"
+import { comparePassword } from "../utils/bcrypt.config.js"
+import { generateToken } from "../utils/token.helper.js"
 
 export const register = async(req,res,next)=>{
     const {nom,prenom,email,password} = req.body
@@ -27,9 +29,15 @@ export const login = async(req,res,next)=>{
         return next(new ErrorHandler("Veuillez remplir le formulaire",400))
     try {
         const user = await getUserDataByEmail(email)
-        
-        res.status(200).json({
-            user
+        const isMatch = await comparePassword(password,user.password)
+        if(!isMatch)
+            throw new ErrorHandler("Mot de passe incorrect",400)
+        const token = generateToken(user)
+        res.cookie("Authorization",token,{expireIn:Date.now() + 8  *360000,httpOnly:process.env.NODE_ENV=="production",secure:process.env.NODE_ENV=="production"})
+        .json({
+            success:true,
+            message:"connexion reussi",
+            token
         })
     } catch (error) {
         next(new ErrorHandler(error.message,error.statusCode))
