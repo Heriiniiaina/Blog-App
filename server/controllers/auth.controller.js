@@ -46,7 +46,7 @@ export const login = async(req,res,next)=>{
     }
 }
 
-export const sendVerificationEmail = async(req,res,next)=>{
+export const sendVerificationCode = async(req,res,next)=>{
     const {email} = req.body
     if(!email)
         return next(new ErrorHandler("Non autorisé",403))
@@ -66,12 +66,39 @@ export const sendVerificationEmail = async(req,res,next)=>{
             user.verificationCode = hashedCode
             user.verificationCodeValidity = Date.now()
             await user.save()
-            res.status(200).json({
+            return res.status(200).json({
                 success:true,
                 message:"Code envoyer à votre email"
             })
         }
         throw new ErrorHandler("Il y a une erreur")
+    } catch (error) {
+        console.log(error)
+        next(new ErrorHandler(error.message,error.statusCode))
+    }
+}
+
+export const verifyVerifiacationCode = async(req,res,next)=>{
+    const {email,code} =req.body
+    if(!code) 
+        return new ErrorHandler("Veuillez entrer le code",400)
+    try {
+        const user = await getAllUserInfo(email)
+        if(user.verified)
+            throw new ErrorHandler("utilisateur déja verifié",400)
+        if(Date.now() - user.verificationCodeValidity > 10 * 60000)
+            throw new ErrorHandler("Code expiré",400)
+        const hashedCode = hashCode(code,process.env.HMAC_KEY)
+        if(hashedCode != user.verificationCode)
+            throw new ErrorHandler("Code incorrect",400)
+        user.verified = true
+        user.verificationCode = undefined
+        user.verificationCodeValidity = undefined
+        await user.save()
+        res.status(200).json({
+            success:true,
+            message:"Compte verifié avec succée"
+        })
     } catch (error) {
         next(new ErrorHandler(error.message,error.statusCode))
     }
