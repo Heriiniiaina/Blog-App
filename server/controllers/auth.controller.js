@@ -104,3 +104,14 @@ export const verifyVerifiacationCode = async(req,res,next)=>{
     }
 }
 
+export const logout = async(req,res,next)=>{
+    try {
+        res.clearCookie("Authorization").status(200).json({
+            success:true,
+            message:"Deconnexion reussi"
+        })
+    } catch (error) {
+        next(new ErrorHandler(error.message))   
+    }
+   
+}
