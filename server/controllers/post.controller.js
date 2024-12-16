@@ -26,7 +26,7 @@ export const addNewPost = async(req,res,next)=>{
 
 export const allPosts = async(req,res,next)=>{
     try {
-        const posts = getAllPost()
+        const posts = await getAllPost()
         res.status(200).json({
             posts
         })
