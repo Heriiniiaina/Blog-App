@@ -20,6 +20,8 @@ const PostSchema = mongoose.Schema({
     comment:{
         type:[String]
     }
+},{
+    timestamps:true
 })
 
 export const Post = mongoose.model("Post",PostSchema)
