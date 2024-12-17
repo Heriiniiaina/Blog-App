@@ -13,6 +13,8 @@ const CommentSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Post"
     }
+},{
+    timestamps:true
 })
 
-export const Comment = mongoose.model("Comment",CommentSchema)
+export const Commententary = mongoose.model("Commentary",CommentSchema)
