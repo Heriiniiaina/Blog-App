@@ -5,6 +5,7 @@ import { createNewPost, getAllPost, getPostByUserId } from "../services/post.ser
 
 export const addNewPost = async(req,res,next)=>{
     const {content,userId} = req.body
+    const image = req.file.path
     if(!content)
         return next(new ErrorHandler("Veuillez repmlir le champ",400))
     try {
@@ -12,7 +13,7 @@ export const addNewPost = async(req,res,next)=>{
         const {error} = postSchema.validate({content})
         if(error)
             throw new ErrorHandler(error.details[0].message)
-        const post = await createNewPost({content,userId:user._id})
+        const post = await createNewPost({content,userId:user._id,image})
         res.status(201).json({
             message:"Poste créé",
             success:true,
