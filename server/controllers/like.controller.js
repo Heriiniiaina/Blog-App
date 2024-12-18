@@ -1,5 +1,5 @@
-import { ErrorHandler } from "../middlewares/errorHandler"
-import { getPostById } from "../services/post.service"
+import { ErrorHandler } from "../middlewares/errorHandler.js"
+import { getPostById } from "../services/post.service.js"
 
 export const likePost = async(req,res,next)=>{
     const {userId,postId} = req.body
@@ -12,7 +12,7 @@ export const likePost = async(req,res,next)=>{
             user:userId,
             post:postId
         }
-        post.push(like)
+        post.like.push(like)
         await post.save()
         res.status(200).json({
             success:true,
