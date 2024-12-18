@@ -43,7 +43,8 @@ node_modules/
 jspm_packages/
 server/node_modules/
 client/node_modules/
-
+client/src/input.css
+client/src/style.css
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
