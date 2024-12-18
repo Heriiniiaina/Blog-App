@@ -2,12 +2,14 @@
 
 
 interface Button{
-    text:string | "",
-    type:"submit" | "reset" | "button" | undefined
+    
+    type:"submit" | "reset" | "button" | undefined,
+    children:any,
+    className?:string | undefined
 }
-const ButtonCustom = ({text,type}:Button) => {
+const ButtonCustom = ({children,type,className}:Button) => {
   return (
-    <button type={type}>{text}</button>
+    <button className={className} type={type}>{children}</button>
   )
 }
 

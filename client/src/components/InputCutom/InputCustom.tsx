@@ -1,12 +1,16 @@
+import React, { ChangeEventHandler } from "react"
+
 interface Input{
     type:string | "text",
     placeHolder:string | "",
-    onChange?: (e:React.InputHTMLAttributes<HTMLInputElement>)=>void
+    onChange?: ChangeEventHandler<HTMLInputElement | undefined>,
+    style?:React.HTMLAttributes<HTMLInputElement> | React.CSSProperties | undefined
+    className?:string | undefined
 }
 
-const InputCustom = ({type,placeHolder,onChange}:Input) => {
+const InputCustom = ({type,className,placeHolder,onChange,style}:Input) => {
   return (
-    <input  type={type} placeholder={placeHolder}  onChange={onChange}/>
+    <input className={className}  style={style} type={type} placeholder={placeHolder}  onChange={onChange}/>
   )
 }
 
