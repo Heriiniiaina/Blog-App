@@ -32,3 +32,14 @@ export const getPostByUserId = async(userId)=>{
         throw new ErrorHandler(error.message)
     }
 }
+
+export const getPostById = async (postId)=>{
+    try {
+        const post = await Post.findById(postId)
+        if(!post)
+            throw new ErrorHandler("Auccun post",400)
+        return post
+    } catch (error) {
+        throw new ErrorHandler(error.message,error.statusCode)
+    }
+}
