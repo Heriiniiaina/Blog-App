@@ -14,6 +14,12 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    birth:{
+        type:String
+    },
+    city:{
+        type:String
+    },
     password:{
         type:String,
         required:true,
