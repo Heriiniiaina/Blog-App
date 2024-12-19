@@ -9,7 +9,8 @@ export const createNewUser = async(userData)=>{
             nom:userData.nom,
             prenom:userData.prenom,
             email:userData.email,
-            password:password
+            password:password,
+            addresse:userData.addresse
         })
         await user.save()
         return user
