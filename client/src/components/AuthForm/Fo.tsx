@@ -5,30 +5,41 @@ import bg from "../../assets/Login-BG.png"
 
 interface AUTHFORM {
     type:"Login" | "Register"
-    handleSubmit?:React.FormEventHandler<HTMLFormElement> | undefined
+    handleSubmit?:React.FormEventHandler<HTMLFormElement> 
+    handleChange:React.ChangeEventHandler<HTMLInputElement>
 }
 
-const AuthForm = ({type,handleSubmit}:AUTHFORM) => {
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
+const AuthForm = ({type,handleSubmit,handleChange}:AUTHFORM) => {
+  
    
     return (
-    <div className="flex flex-col justify-center items-center gap-4 h-screen" style={{background:`url(${bg})`, backgroundSize:"cover"}}>
-        <h1>{type === "Login" ? "Bon retour" : "Bienvenue"}</h1>
+    <div className="flex flex-col justify-center items-center gap-4 h-screen  " style={{background:`url(${bg})`,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+        <div className="bg-[#e9effade] p-5 px-9 rounded flex flex-col gap-3">
+        <h1 className="text-xl">{type === "Login" ? "Bon retour" : "Bienvenue"}</h1>
         <form action="" onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3">
             {
-                type ==  "Register" && ( <InputCustom type="text" placeHolder="Votre Nom" className="border border-black pl-2 p-1 rounded-xl outline-none"/> )
-               
+                type ==  "Register" && 
+                ( 
+                <>
+                    <InputCustom name="nom" type="text" placeHolder="Votre Nom" className="border border-black pl-2 p-1 rounded outline-none" onChange ={handleChange}/> 
+                    <InputCustom name="prenom" type="text" placeHolder="Votre Prenom" className="border border-black pl-2 p-1 rounded outline-none"/> 
+                    <InputCustom name="addresse" type="text" placeHolder="Votre addresse" className="border border-black pl-2 p-1 rounded outline-none"/> 
+                </>
+                )
             }
-            <InputCustom type="text" placeHolder="Votre email" onChange={(e)=> setEmail(e.target.value)} 
-                className="border border-black pl-2 p-1 rounded-xl outline-none"
+            <InputCustom name="email" type="text" placeHolder="Votre email" 
+                className="border border-black pl-2 p-1 rounded outline-none"
+                onChange={handleChange}
             />
-            <InputCustom type="password"  placeHolder="Votre mot de passe" onChange={(e)=>setPassword(e.target.value)}
-                className="border border-black pl-2 p-1 rounded-xl outline-none"
+            <InputCustom name="password" type="password"  placeHolder="Votre mot de passe" 
+                className="border border-black pl-2 p-1 rounded outline-none"
+                onChange={handleChange}
             />
           
-            <ButtonCustom className="bg-blue-500 w-[200px] p-3 rounded text-cyan-50" type="submit">Se Connecter</ButtonCustom>
+            <ButtonCustom className="bg-blue-500  p-3 rounded text-cyan-50 self-stretch" type="submit">{type=="Login" ? "Se connecter" : "S'inscrire"}</ButtonCustom>
         </form>
+        </div>
+        
     </div>
   )
 }

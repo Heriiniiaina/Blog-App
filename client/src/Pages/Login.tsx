@@ -7,14 +7,22 @@ import AuthForm from "../components/AuthForm/Fo"
 
 
 const Login = () => {
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    const handleSubmit = async (e:React.FormEvent)=>{
-        e.preventDefault()
-        console.log(email+"  " + password)
-    }
+  const [loginForm,setLoginForm] = useState({
+    email:"",
+    password:""
+})
+const handleSubmit = async (e:React.FormEvent)=>{
+    e.preventDefault()
+   
+}
+const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const name = e.target.name
+    const value = e.target.value
+    setLoginForm((prev) => ({ ...prev, [name]: value }));
+    console.log(loginForm)
+}
     return (
-        <AuthForm type="Login"/>
+        <AuthForm type="Login" handleSubmit={handleSubmit} handleChange={handleChange}/>
         
   )
 }
