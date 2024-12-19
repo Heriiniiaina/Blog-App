@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import InputCustom from "../components/InputCutom/InputCustom"
-import ButtonCustom from "../components/ButonCustom/ButtonCustom"
+
 import AuthForm from "../components/AuthForm/Fo"
+import { AuthApi } from "../api/auth.api"
 
 
 
@@ -13,7 +13,12 @@ const Login = () => {
 })
 const handleSubmit = async (e:React.FormEvent)=>{
     e.preventDefault()
-   
+    try {
+        const res = await AuthApi.login(loginForm)
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
 }
 const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const name = e.target.name
