@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import InputCustom from "../InputCutom/InputCustom"
 import ButtonCustom from "../ButonCustom/ButtonCustom"
 import bg from "../../assets/Login-BG.png"
@@ -22,8 +22,8 @@ const AuthForm = ({type,handleSubmit,handleChange}:AUTHFORM) => {
                 ( 
                 <>
                     <InputCustom name="nom" type="text" placeHolder="Votre Nom" className="border border-black pl-2 p-1 rounded outline-none" onChange ={handleChange}/> 
-                    <InputCustom name="prenom" type="text" placeHolder="Votre Prenom" className="border border-black pl-2 p-1 rounded outline-none"/> 
-                    <InputCustom name="addresse" type="text" placeHolder="Votre addresse" className="border border-black pl-2 p-1 rounded outline-none"/> 
+                    <InputCustom name="prenom" type="text" placeHolder="Votre Prenom" className="border border-black pl-2 p-1 rounded outline-none" onChange={handleChange}/> 
+                    <InputCustom name="addresse" type="text" placeHolder="Votre addresse" className="border border-black pl-2 p-1 rounded outline-none" onChange={handleChange}/> 
                 </>
                 )
             }
