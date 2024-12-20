@@ -25,7 +25,9 @@ const authSlice = createSlice({
     initialState,
     reducers:{
         login:()=>{
-            
+
         }
     }
 }) 
+
+export default authSlice.reducer
