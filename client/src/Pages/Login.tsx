@@ -29,8 +29,8 @@ const handleSubmit = async (e:React.FormEvent)=>{
     try {
         const res = await AuthApi.login(loginForm)
         const userData:User = jwtDecode(res.token)
-        
         dispatch(login({user:userData,token:res.token}))
+        sessionStorage.setItem("user-token",res.token)
         console.log(res)
     } catch (error) {
         console.log(error)
