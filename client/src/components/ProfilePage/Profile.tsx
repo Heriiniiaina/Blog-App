@@ -10,10 +10,13 @@ const Profile = () => {
     console.log(user)
     
     return (
-    <div>
+    <div className="flex flex-col items-center">
+        <img src={user.image} alt="" className="rounded-full w-[100px] h-[100px]" />
         <h1>{user?.nom} {user.prenom} </h1>
+        <h2>{user.email}</h2>
     </div>
   )
 }
 
 export default Profile
+//https://res.cloudinary.com/dho6csxnj/image/upload/v1734419707/blog_image/umtqjnkfghpoxbxubzzl.png
