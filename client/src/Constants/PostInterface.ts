@@ -2,7 +2,7 @@ interface Like{
     user:string,
     post:string
 }
-export interface Note{
+export interface POST{
     _id:string,
     content:string,
     image:string,
