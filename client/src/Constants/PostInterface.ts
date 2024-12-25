@@ -8,5 +8,6 @@ export interface POST{
     image:string,
     createAt:string,
     updatedAt:string,
-    like:Like[]
+    like:Like[],
+    user:string
 }
