@@ -4,6 +4,6 @@ import upload from "../utils/multer.config.js"
 const router = express.Router()
 
 router.patch("/update-profile",upload.single('image'),updateUserProfile)
-
+router.get("/profile",getProfile)
 
 export default router
