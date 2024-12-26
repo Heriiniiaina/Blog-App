@@ -24,10 +24,11 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
   },[])
   console.log(user)
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-slate-200 w-[300px] p-5 m-5 rounded-md gap-3">
         <div className="user flex items-center gap-4" >
           <img src={user?.image} alt="user" className="w-[50px] h-[50px] rounded-full"/>
           <h3 className="text-xl font-bold">{user?.nom} {user?.prenom}</h3>
+          <h5></h5>
         </div>
         <div className="post">
           <h1>{posts.content}</h1>
