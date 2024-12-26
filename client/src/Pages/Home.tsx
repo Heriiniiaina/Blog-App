@@ -4,7 +4,7 @@ import Profile from "../components/ProfilePage/Profile"
 
 const Home = () => {
   return (
-   <div>
+   <div className="flex ">
       <Profile/>
       <Acutality/>
    </div>
