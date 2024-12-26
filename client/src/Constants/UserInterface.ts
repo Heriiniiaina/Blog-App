@@ -4,6 +4,8 @@ export interface User{
     prenom:string,
     email:string,
     verified:boolean,
-    image:string
+    image:string,
+    city:string,
+    birth:string,
 
 }
