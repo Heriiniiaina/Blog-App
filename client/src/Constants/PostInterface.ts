@@ -6,7 +6,7 @@ export interface POST{
     _id:string,
     content:string,
     image:string,
-    createAt:string,
+    createdAt:string,
     updatedAt:string,
     like:Like[],
     user:string
