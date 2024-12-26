@@ -16,4 +16,5 @@ export class AuthApi{
     static async register(Formdata:AUTH){
         return (await axios.post(`${BASE_URL}/signup`,{nom:Formdata.nom,prenom:Formdata.prenom,addresse:Formdata.addresse,email:Formdata.email,password:Formdata.password})).data
     }
+    
 }
