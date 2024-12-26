@@ -26,7 +26,8 @@ const UserSchema = mongoose.Schema({
         select:false
     },
     image:{
-        type:String
+        type:String,
+        default:"https://res.cloudinary.com/dho6csxnj/image/upload/v1735204357/blog_image/cn3j9zfsrmd0drp9dceg.png"
     },
     verified:{
         type:Boolean,
