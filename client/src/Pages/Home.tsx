@@ -5,7 +5,7 @@ import Profile from "../components/ProfilePage/Profile"
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-[#f8f9fa] h-screen">
       <div>
         <NavBar/>
       </div>
