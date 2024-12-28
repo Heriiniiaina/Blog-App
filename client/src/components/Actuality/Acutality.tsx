@@ -24,7 +24,7 @@ const Acutality = () => {
   },[])
   const posts:POST[] = useSelector((store:RootState)=>store.posts.posts)
   return (
-    <div>
+    <div className="w-[100%] ">
         {
           posts.map((post)=><DisplayPost posts={post} key={post._id}/>)
         }
