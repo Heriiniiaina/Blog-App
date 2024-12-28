@@ -1,5 +1,6 @@
 import Acutality from "../components/Actuality/Acutality"
 import NavBar from "../components/NavBar/NavBar"
+import PostForm from "../components/PostForm/PostForm"
 import Profile from "../components/ProfilePage/Profile"
 
 
@@ -14,6 +15,7 @@ const Home = () => {
           <Profile/>
         </div>
         <div className="w-3/4 ">
+          <PostForm />
           <Acutality />
         </div>
    </div>
