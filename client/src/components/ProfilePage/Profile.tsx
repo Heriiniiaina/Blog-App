@@ -13,7 +13,7 @@ const Profile = () => {
     console.log(user)
     
     return (
-    <div className="flex flex-col items-center bg-[#ffffff] shadow-md shadow-gray-700  h-[100%] p-3 m-5">
+    <div className="flex flex-col items-center bg-[#ffffff] shadow-md shadow-gray-400  h-[100%] p-3 m-5">
         <div>
           <img src={user.image} alt="" className="rounded-full w-[100px] h-[100px]" />
 
