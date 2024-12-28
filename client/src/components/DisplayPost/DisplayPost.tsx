@@ -24,7 +24,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
   },[])
   console.log(user)
   return (
-    <div className="flex flex-col bg-[#ffffff] w-[300px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-700">
+    <div className="flex flex-col bg-[#ffffff] md:w-[600px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-700">
         <div className="user flex items-center gap-4" >
 
           <img src={user?.image} alt="user" className="w-[50px] h-[50px] rounded-full"/>
