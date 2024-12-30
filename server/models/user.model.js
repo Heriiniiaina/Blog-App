@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+
+
 const UserSchema = mongoose.Schema({
     nom:{
         type:String,
@@ -48,7 +50,8 @@ const UserSchema = mongoose.Schema({
     forgotPasswordCodeValidity:{
         type:String,
         select:false
-    }
+    },
+    friend:[UserSchema],
     
 })
 

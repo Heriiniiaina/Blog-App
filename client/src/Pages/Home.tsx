@@ -6,7 +6,7 @@ import Profile from "../components/ProfilePage/Profile"
 
 const Home = () => {
   return (
-    <div className="bg-[#f8f9fa] h-screen w-full">
+    <div className="bg-[#f8f9fa] w-full">
 
       <div className="sticky top-0 z-10">
         <NavBar />
@@ -14,12 +14,12 @@ const Home = () => {
 
 
       <div className="flex h-full">
-        <div className="w-1/4 h-full bg-white  shadow-md shadow-gray-400 fixed">
+        <div className="w-1/4 h-full hidden md:block bg-white  shadow-md shadow-gray-400 fixed">
           <Profile />
         </div>
 
 
-        <div className="ml-[25%] w-3/4 h-full overflow-y-auto">
+        <div className="m-auto md:ml-[25%] w-[100%]  md:w-3/4 h-full ">
           <PostForm />
           <Acutality />
         </div>
