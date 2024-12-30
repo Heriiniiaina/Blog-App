@@ -40,3 +40,17 @@ export const removeFriend = async (req, res,next) => {
         next(new ErrorHandler(error.message, error.statusCode));
     }
 }
+
+export const getFriends = async (req, res,next) => {
+    const { userId } = req.body;
+    try {
+        const   user = await    User.findById(userId).populate("friend");
+        if (!user) {
+            throw new ErrorHandler("User not found", 404);
+        }
+        res.status(200).json({ friends: user.friend });
+    }
+    catch (error) {
+        next(new ErrorHandler(error.message, error.statusCode));
+    }
+}
