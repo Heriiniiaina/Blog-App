@@ -1,4 +1,5 @@
 import Acutality from "../components/Actuality/Acutality"
+import DisplayAllFriends from "../components/DisplayAllFriends.tsx/DisplayAllFriends"
 import NavBar from "../components/NavBar/NavBar"
 import PostForm from "../components/PostForm/PostForm"
 import Profile from "../components/ProfilePage/Profile"
@@ -22,6 +23,9 @@ const Home = () => {
         <div className="m-auto md:ml-[25%] w-[100%]  md:w-3/4 h-full ">
           <PostForm />
           <Acutality />
+        </div>
+        <div>
+          <DisplayAllFriends />
         </div>
       </div>
     </div>
