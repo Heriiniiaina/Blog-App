@@ -4,7 +4,7 @@ import { addNewFriend,removeFriend,getFriends } from '../controllers/friend.cont
 const router = express.Router();
 router.patch('/add-new-friend', addNewFriend);
 router.patch('/remove-friend', removeFriend);
-router.get('/get-friends', getFriends);
+router.get('/get-friends/:userId', getFriends);
 export default router;
 
 

@@ -42,7 +42,7 @@ export const removeFriend = async (req, res,next) => {
 }
 
 export const getFriends = async (req, res,next) => {
-    const { userId } = req.body;
+    const  userId  = req.params.userId;
     try {
         const   user = await    User.findById(userId).populate("friend");
         if (!user) {
