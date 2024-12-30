@@ -4,7 +4,7 @@ import postRoute from "./post.routes.js"
 import profileRoute from "./user.routes.js" 
 import commentRoute from "./commentary.routes.js"
 import likeRoute from "./like.routes.js"
-import friendRoute from "./auth.routes.js"
+import friendRoute from "./friends.routes.js"
 const router = express.Router()
 const BASE_URL = "/blog"
 router.use(`${BASE_URL}/auth`,authRoute)

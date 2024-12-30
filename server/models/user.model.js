@@ -51,7 +51,10 @@ const UserSchema = mongoose.Schema({
         type:String,
         select:false
     },
-    friend:[UserSchema],
+    friend: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User" // Référence au modèle User
+    }]
     
 })
 
