@@ -36,6 +36,7 @@ export const getAllUserInfo = async(email)=>{
 }
 export const getUserById = async(userId)=>{
     const user = await User.findById(userId)
+    console.log(userId)
     if(!user)
         throw new ErrorHandler("Utilisateur non trouvé",404)
     return user
