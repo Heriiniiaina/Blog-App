@@ -3,16 +3,16 @@ import { IFriend, User } from "../../Constants/UserInterface";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
+
 import { UserApi } from "../../api/user.api";
+import DisplayFriend from "../DisplayFriends/DisplayFriend";
 
 
 
 
 const DisplayAllFriends = () => {
     const [friends, setFriends] = useState<IFriend[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>("");
+    
     const token = useSelector((store:RootState)=>store.auth.token)  || "" 
     const user = jwtDecode(token) as User
     useEffect(() => {
@@ -28,7 +28,18 @@ const DisplayAllFriends = () => {
     }, [])
     console.log(friends)
   return (
-    <div>DisplayAllFriends</div>
+    <div className="p-5 m-5 bg-[#fff] flex flex-col gap-5">
+        <div>
+            <h1 className="text-2xl">Friends</h1>
+        </div>
+        <div>
+            {
+              friends.map((friend,index)=>
+                <DisplayFriend friends={friend} key={index}/>
+              )
+            }
+        </div>
+    </div>
   )
 }
 

@@ -1,10 +1,16 @@
+import { IFriend } from "../../Constants/UserInterface"
 
 
-type Props = {}
+interface DisplayFrined{
+  friends:IFriend
+}
 
-const DisplayFriend = (props: Props) => {
+const DisplayFriend = ({friends}:DisplayFrined) => {
   return (
-    <div>DisplayFriend</div>
+    <div className="flex items-center my-3 gap-2">
+        <img src={friends.image} alt="" className="w-[40px] h-[40px] rounded-full"/>
+        <p className="text-xl">{friends.nom} {friends.prenom}</p>
+    </div>
   )
 }
 
