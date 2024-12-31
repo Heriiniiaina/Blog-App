@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode"
 import { useState } from "react"
 import axios from "axios"
 import ButtonCustom from "../ButonCustom/ButtonCustom"
+import { PostApi } from "../../api/post.api"
 
 
 
@@ -29,11 +30,7 @@ const PostForm = () => {
         formData.append("image", image )
         formData.append("userId", user.userId)
         try {
-            const res = await axios.post("http://localhost:8000/blog/post/add-new-post", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
+            const res = await PostApi.addNewPost(formData)
             console.log(res)
         } catch (error) {
             console.log(error)
