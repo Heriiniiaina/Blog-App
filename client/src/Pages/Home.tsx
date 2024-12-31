@@ -20,11 +20,11 @@ const Home = () => {
         </div>
 
 
-        <div className="m-auto md:ml-[25%] w-[100%]  md:w-3/4 h-full ">
+        <div className="md:ml-[25%] w-[100%]  md:w-2/4 h-full ">
           <PostForm />
           <Acutality />
         </div>
-        <div>
+        <div className="hidden md:block md:w-1/4">
           <DisplayAllFriends />
         </div>
       </div>
