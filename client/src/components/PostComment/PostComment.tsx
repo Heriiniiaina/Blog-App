@@ -1,7 +1,7 @@
 
-import { FaSeedling, FaShare } from "react-icons/fa";
+
 import { User } from "../../Constants/UserInterface";
-import ButtonCustom from "../ButonCustom/ButtonCustom";
+
 import InputCustom from "../InputCutom/InputCustom";
 import { BiSend } from "react-icons/bi";
 
