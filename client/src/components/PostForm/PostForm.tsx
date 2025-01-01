@@ -7,6 +7,7 @@ import { useState } from "react"
 import axios from "axios"
 import ButtonCustom from "../ButonCustom/ButtonCustom"
 import { PostApi } from "../../api/post.api"
+import Loading from "../Loading/Loading"
 
 
 
@@ -16,6 +17,7 @@ const PostForm = () => {
     const [image,setImage] = useState("")
     const token = useSelector((store: RootState) => store.auth.token) || ""
     const user = jwtDecode(token) as User
+    const [isLoading, setIsLoading] = useState(false)
     const onFileChange = (e: any) => {
         setImage(e.target.files[0])
     }
@@ -29,11 +31,14 @@ const PostForm = () => {
         formData.append("content", content)
         formData.append("image", image )
         formData.append("userId", user.userId)
+        setIsLoading(true)
         try {
             const res = await PostApi.addNewPost(formData)
             console.log(res)
         } catch (error) {
             console.log(error)
+        }finally{
+            setIsLoading(false)
         }
     }
     return (
@@ -56,7 +61,9 @@ const PostForm = () => {
     file:me-4
     file:py-3 file:px-4
     dark:file:bg-slate-50 dark:file:text-neutral-400"/>
-                    <ButtonCustom type="submit" className="bg-blue-500 text-white rounded-md p-2">Post</ButtonCustom>
+                     {
+                            isLoading ? <Loading/> : <ButtonCustom type="submit" className="bg-blue-500 text-white rounded-md p-2">Post</ButtonCustom>
+                     }
                     </div>
                 </form>
             </div>
