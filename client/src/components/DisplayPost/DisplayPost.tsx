@@ -4,6 +4,7 @@ import { User } from "../../Constants/UserInterface"
 import { UserApi } from "../../api/user.api"
 import {getDate} from "../../services/data.service"
 import Like from "../Like/Like"
+import Comment from "../Comment/Comment"
 interface DisplayPostProps {
     posts: POST
 }
@@ -42,8 +43,9 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
             posts.image && <img src={posts.image} alt="post" className="w-[250px] h-[250px]"/>
           }
         </div>
-        <div className="like">
+        <div className="flex items-center justify-between">
           <Like like={posts.like.length} isLiked={false}/>
+          <Comment comment={posts.like.length}/>
         </div>
         
     </div>

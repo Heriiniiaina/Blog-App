@@ -10,7 +10,7 @@ const Like = ({like,isLiked}:LikeProps) => {
     <div className="">
         <div className="flex items-center gap-2">
             {isLiked ?<button><FaHeart className="text-[18px] text-red-500"/> </button> : <button><FaRegHeart className="text-[18px] text-red-500"/></button> }
-            <p className="text-[18px]">{like}</p>
+            <p className="text-[18px]">{like} Likes</p>
         </div>
        
     </div>
