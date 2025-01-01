@@ -38,7 +38,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
           <h1>{posts.content}</h1>
           
           {
-            posts.image && <img src={posts.image} alt="post" className="w-[200px] h-[200px]"/>
+            posts.image && <img src={posts.image} alt="post" className="w-[250px] h-[250px]"/>
           }
         </div>
         

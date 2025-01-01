@@ -5,11 +5,12 @@ interface Button{
     
     type:"submit" | "reset" | "button" | undefined,
     children:any,
-    className?:string | undefined
+    className?:string | undefined,
+    isDisabled?:boolean | undefined
 }
-const ButtonCustom = ({children,type,className}:Button) => {
+const ButtonCustom = ({children,type,className,isDisabled}:Button) => {
   return (
-    <button className={className} type={type}>{children}</button>
+    <button disabled={isDisabled} className={className} type={type}>{children}</button>
   )
 }
 
