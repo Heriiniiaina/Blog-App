@@ -5,6 +5,7 @@ import { UserApi } from "../../api/user.api"
 import {getDate} from "../../services/data.service"
 import Like from "../Like/Like"
 import Comment from "../Comment/Comment"
+import PostComment from "../PostComment/PostComment"
 interface DisplayPostProps {
     posts: POST
 }
@@ -47,7 +48,8 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
           <Like like={posts.like.length} isLiked={false}/>
           <Comment comment={posts.like.length}/>
         </div>
-        
+        <hr />
+        <PostComment user={user}/>
     </div>
   )
 }
