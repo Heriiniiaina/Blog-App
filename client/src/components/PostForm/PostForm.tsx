@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ButtonCustom from "../ButonCustom/ButtonCustom";
 import { PostApi } from "../../api/post.api";
 import { setLoading } from "../../store/slices/loading.slice";
+import { addPost } from "../../store/slices/post.slice";
 
 const PostForm = () => {
   const dispatch = useDispatch();
@@ -41,10 +42,12 @@ const PostForm = () => {
     try {
       const res = await PostApi.addNewPost(formData);
       console.log(res);
+        dispatch(addPost(res.post));
     } catch (error) {
       console.log(error);
     } finally {
       dispatch(setLoading(false));
+      
     }
   };
   return (

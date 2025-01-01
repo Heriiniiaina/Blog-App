@@ -1,5 +1,6 @@
+import { POST } from './../../Constants/PostInterface';
 import {createSlice,PayloadAction} from "@reduxjs/toolkit"
-import { POST } from "../../Constants/PostInterface"
+
 
 interface PostState{
     posts:POST[]
@@ -15,10 +16,13 @@ const postSlice = createSlice({
     reducers:{
         setPost:(state,action:PayloadAction<{posts:POST[]}>)=>{
             state.posts = action.payload.posts
+        },
+        addPost:(state,action:PayloadAction<POST>)=>{
+            state.posts.push(action.payload)
         }
     }
 })
 
 
-export const {setPost} = postSlice.actions
+export const {setPost,addPost} = postSlice.actions
 export default postSlice.reducer
