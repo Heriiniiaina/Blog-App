@@ -3,6 +3,7 @@ import { POST } from "../../Constants/PostInterface"
 import { User } from "../../Constants/UserInterface"
 import { UserApi } from "../../api/user.api"
 import {getDate} from "../../services/data.service"
+import Like from "../Like/Like"
 interface DisplayPostProps {
     posts: POST
 }
@@ -40,6 +41,9 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
           {
             posts.image && <img src={posts.image} alt="post" className="w-[250px] h-[250px]"/>
           }
+        </div>
+        <div className="like">
+          <Like like={posts.like.length} isLiked={false}/>
         </div>
         
     </div>
