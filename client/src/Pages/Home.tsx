@@ -1,12 +1,19 @@
+import { useSelector } from "react-redux"
 import Acutality from "../components/Actuality/Acutality"
 import DisplayAllFriends from "../components/DisplayAllFriends.tsx/DisplayAllFriends"
 import NavBar from "../components/NavBar/NavBar"
 import PostForm from "../components/PostForm/PostForm"
 import Profile from "../components/ProfilePage/Profile"
+import { RootState } from "../store/store"
+import Loading from "../components/Loading/Loading"
+
 
 
 const Home = () => {
+  const loading = useSelector((store:RootState)=>store.loading.loading)
+
   return (
+    <>
     <div className="bg-[#f8f9fa] w-full">
 
       <div className="sticky top-0 z-10">
@@ -29,6 +36,10 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <div className={loading ? "fixed bg-slate-600 inset-0 bg-opacity-90 flex justify-center items-center z-50" : "hidden"}>
+          <Loading/>
+      </div>
+    </>
 
   )
 }
