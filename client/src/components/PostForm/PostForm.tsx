@@ -3,12 +3,14 @@ import InputCustom from "../InputCutom/InputCustom";
 import { RootState } from "../../store/store";
 import { User } from "../../Constants/UserInterface";
 import { jwtDecode } from "jwt-decode";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ButtonCustom from "../ButonCustom/ButtonCustom";
 import { PostApi } from "../../api/post.api";
 import { setLoading } from "../../store/slices/loading.slice";
 import { addPost } from "../../store/slices/post.slice";
+import { POST } from "../../Constants/PostInterface";
+import toast from "react-hot-toast";
 
 const PostForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ const PostForm = () => {
   const onChange = (e: any) => {
     setContent(e.target.value);
   };
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(user.userId);
     const formData = new FormData();
@@ -42,9 +44,11 @@ const PostForm = () => {
     try {
       const res = await PostApi.addNewPost(formData);
       console.log(res);
-        dispatch(addPost(res.post));
-    } catch (error) {
-      console.log(error);
+      const post = res.post as POST
+        dispatch(addPost(post));
+    } catch (error:any) {
+      
+      toast.error(error.response.data.message);
     } finally {
       dispatch(setLoading(false));
       

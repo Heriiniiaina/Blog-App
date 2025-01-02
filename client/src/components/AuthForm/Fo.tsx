@@ -2,6 +2,9 @@ import React from "react"
 import InputCustom from "../InputCutom/InputCustom"
 import ButtonCustom from "../ButonCustom/ButtonCustom"
 import bg from "../../assets/Login-BG.png"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
+import Loading from "../Loading/Loading"
 
 interface AUTHFORM {
     type:"Login" | "Register"
@@ -11,7 +14,7 @@ interface AUTHFORM {
 
 const AuthForm = ({type,handleSubmit,handleChange}:AUTHFORM) => {
   
-   
+    const loading = useSelector((store:RootState)=>store.loading.loading)
     return (
     <div className="flex flex-col justify-center items-center gap-4 h-screen  " style={{background:`url(${bg})`,backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
         <div className="bg-[#e9effade] p-5 px-9 rounded flex flex-col gap-3">
@@ -36,7 +39,7 @@ const AuthForm = ({type,handleSubmit,handleChange}:AUTHFORM) => {
                 onChange={handleChange}
             />
           
-            <ButtonCustom className="bg-blue-500  p-3 rounded text-cyan-50 self-stretch" type="submit">{type=="Login" ? "Se connecter" : "S'inscrire"}</ButtonCustom>
+            <ButtonCustom className="bg-blue-500  p-3 rounded text-cyan-50 self-stretch" type="submit">{loading ? <Loading size="small"/> : type=="Login" ? "Se connecter" : "S'inscrire"}   </ButtonCustom>
         </form>
         </div>
         

@@ -25,7 +25,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
     }
     getUser()
   },[])
-  console.log(user)
+ 
   return (
     <div className="flex flex-col bg-[#ffffff] md:w-[600px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-400">
         <div className="user flex items-center gap-4" >

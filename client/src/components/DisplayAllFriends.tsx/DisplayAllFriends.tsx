@@ -26,7 +26,7 @@ const DisplayAllFriends = () => {
         }
         fetchFriends()
     }, [])
-    console.log(friends)
+   
   return (
     <div className="p-5 m-5 bg-[#fff] flex flex-col gap-5">
         <div>

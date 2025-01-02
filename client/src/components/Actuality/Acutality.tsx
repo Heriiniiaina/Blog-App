@@ -5,6 +5,7 @@ import { setPost } from "../../store/slices/post.slice"
 import { RootState } from "../../store/store"
 import { POST } from "../../Constants/PostInterface"
 import DisplayPost from "../DisplayPost/DisplayPost"
+import toast from "react-hot-toast"
 
 
 
@@ -15,9 +16,10 @@ const Acutality = () => {
         try {
             const post = await PostApi.getAllpost()
             dispatch(setPost(post))
-            console.log(post)
-        } catch (error) {
-            console.log(error)
+           
+        } catch (error:any) {
+           
+            toast.error(error.response.data.message)
         }
     }
     getPost()

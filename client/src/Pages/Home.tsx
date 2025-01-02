@@ -37,7 +37,7 @@ const Home = () => {
       </div>
     </div>
     <div className={loading ? "fixed bg-slate-600 inset-0 bg-opacity-90 flex justify-center items-center z-50" : "hidden"}>
-          <Loading/>
+          <Loading size="large"/>
       </div>
     </>
 

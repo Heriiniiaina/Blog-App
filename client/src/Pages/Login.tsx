@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import { login } from "../store/slices/auth.slice"
 
 import {jwtDecode} from "jwt-decode"
+import { setLoading } from "../store/slices/loading.slice"
 
 interface User{
     userId:string,
@@ -22,10 +23,11 @@ const Login = () => {
     email:"",
     password:""
 })
+    
 
 const handleSubmit = async (e:React.FormEvent)=>{
-    
     e.preventDefault()
+    dispatch(setLoading(true))
     try {
         const res = await AuthApi.login(loginForm)
         const userData:User = jwtDecode(res.token)
@@ -34,6 +36,8 @@ const handleSubmit = async (e:React.FormEvent)=>{
         console.log(res)
     } catch (error) {
         console.log(error)
+    } finally{
+        dispatch(setLoading(false))
     }
 }
 const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
