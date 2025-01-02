@@ -12,7 +12,7 @@ export const addNewPost = async(req,res,next)=>{
         const user = await getUserById(userId)
         const {error} = postSchema.validate({content})
         if(error)
-            throw new ErrorHandler(error.details[0].message)
+            throw new ErrorHandler(error.details[0].message,400)
         const post = await createNewPost({content,userId:user._id,image})
         res.status(201).json({
             message:"Poste créé",

@@ -44,7 +44,7 @@ export const removeFriend = async (req, res,next) => {
 export const getFriends = async (req, res,next) => {
     const  userId  = req.params.userId;
     try {
-        const   user = await    User.findById(userId).populate("friend");
+        const user = await User.findById(userId).populate("friend");
         if (!user) {
             throw new ErrorHandler("User not found", 404);
         }
