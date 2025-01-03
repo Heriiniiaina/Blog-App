@@ -6,16 +6,21 @@ import {getDate} from "../../services/data.service"
 import Like from "../Like/Like"
 import Comment from "../Comment/Comment"
 import PostComment from "../PostComment/PostComment"
+import { CommentApi } from "../../api/comment.api"
+import { COMMENT } from "../../Constants/CommentInterface"
 interface DisplayPostProps {
     posts: POST
 }
 
 const DisplayPost = ({posts}:DisplayPostProps) => {
   const [user,setUser] = useState<User>()
+  const [comment,setComment] = useState<COMMENT[]>([])
   useEffect(()=>{
     const getUser = async()=>{
       try {
         const res = await UserApi.getUser(posts.user)
+        const commt = await CommentApi.getPostComment(posts._id)
+        setComment(commt.comment)
         setUser(res.user)
       } catch (error) {
         console.log(error)
@@ -25,7 +30,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
     }
     getUser()
   },[])
-  console.log(user)
+  
   return (
     <div className="flex flex-col bg-[#ffffff] md:w-[600px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-400">
         <div className="user flex items-center gap-4" >
@@ -46,7 +51,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
         </div>
         <div className="flex items-center justify-between">
           <Like like={posts.like.length} isLiked={false}/>
-          <Comment comment={posts.like.length}/>
+          <Comment comment={comment.length}/>
         </div>
         <hr />
         <PostComment user={user} post={posts}/>

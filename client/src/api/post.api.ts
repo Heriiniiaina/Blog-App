@@ -12,7 +12,5 @@ export class PostApi {
             }
         })).data
     }
-    static addComment = async()=>{
-        
-    }
+    
 }
