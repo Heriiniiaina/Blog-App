@@ -1,5 +1,5 @@
-import { ErrorHandler } from "../middlewares/errorHandler"
-import { Commententary } from "../models/comment.model"
+import { ErrorHandler } from "../middlewares/errorHandler.js"
+import { Commententary } from "../models/comment.model.js"
 
 export const getCommentaryByPostId = async (postId) => {
     
