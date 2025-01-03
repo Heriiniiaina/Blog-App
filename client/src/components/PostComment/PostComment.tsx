@@ -16,13 +16,14 @@ interface PostCommentProps {
 
 
 const PostComment = ({user,post}:PostCommentProps) => {
-   
+    
     const [comment,setComment] = React.useState<string>("")
     const onChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setComment(e.target.value)
     }
     const postComment = async (e:React.FormEvent)=>{
         e.preventDefault()
+        console.log("user = " +  user?.userId);
         try {
             const res = await CommentApi.addComment(user?.userId as string,comment,post?._id as string)
             console.log(res);
