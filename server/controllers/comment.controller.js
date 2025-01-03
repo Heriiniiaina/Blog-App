@@ -3,6 +3,7 @@ import { Commententary } from "../models/comment.model.js"
 
 export const addComment = async(req,res,next)=>{
     const {content,userId,postId}=req.body
+    console.log(userId)
     if(!content)
         return next(new ErrorHandler("Veuillez remplir le contenu",400))
     if(!userId)
