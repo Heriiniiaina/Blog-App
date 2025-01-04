@@ -15,7 +15,10 @@ interface DisplayPostProps {
 const DisplayPost = ({posts}:DisplayPostProps) => {
   const [user,setUser] = useState<User>()
   const [comment,setComment] = useState<COMMENT[]>([])
+  const [isLiked,setIsLiked] = useState<boolean>(false)
   useEffect(()=>{
+    const isLike = posts.like.some(like=>like.user === user?.userId)
+    setIsLiked(isLike)
     const getUser = async()=>{
       try {
         const res = await UserApi.getUser(posts.user)
@@ -50,7 +53,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
           }
         </div>
         <div className="flex items-center justify-between">
-          <Like like={posts.like.length} isLiked={false} userId={user?.userId ? user.userId : ""} postId={posts._id}/>
+          <Like like={posts.like.length} isLiked={isLiked} setIsLiked={setIsLiked} postId={posts._id}/>
           <Comment comment={comment.length}/>
         </div>
         <hr />
