@@ -3,6 +3,9 @@ import { FaHeart, FaRegHeart } from "react-icons/fa"
 import { LikeApi } from "../../api/like.api"
 import { User } from "../../Constants/UserInterface"
 import { getUser } from "../../services/user.service"
+import { useDispatch } from "react-redux"
+import { PostApi } from "../../api/post.api"
+import { setPost } from "../../store/slices/post.slice"
 
 interface LikeProps{
     like:number,
@@ -12,6 +15,7 @@ interface LikeProps{
    
 }
 const Like = ({like,isLiked,postId,setIsLiked}:LikeProps) => {
+  const dispatch = useDispatch()
   const user = getUser() as User
   const handleLike = async()=>{
     setIsLiked(true)
@@ -19,6 +23,8 @@ const Like = ({like,isLiked,postId,setIsLiked}:LikeProps) => {
     console.log(user?.userId)
     try {
         const liked =await LikeApi.likePost(postId,user?.userId)
+        const posts = await PostApi.getAllpost()
+        dispatch(setPost(posts))
         console.log(liked)
     } catch (error) {
       console.log(error)
