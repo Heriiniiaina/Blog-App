@@ -8,12 +8,13 @@ interface LikeProps{
     like:number,
     isLiked:boolean,
     postId:string,
+    setIsLiked:(value: boolean) => void
    
 }
-const Like = ({like,isLiked,postId}:LikeProps) => {
+const Like = ({like,isLiked,postId,setIsLiked}:LikeProps) => {
   const user = getUser() as User
   const handleLike = async()=>{
-    isLiked = !isLiked
+    setIsLiked(true)
     console.log(postId)
     console.log(user?.userId)
     try {
