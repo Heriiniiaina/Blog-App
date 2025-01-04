@@ -24,6 +24,7 @@ const Like = ({like,isLiked,postId,setIsLiked}:LikeProps) => {
       console.log(error)
     }  
   }
+  console.log(isLiked)
   return (
     <div className="">
         <div className="flex items-center gap-2">

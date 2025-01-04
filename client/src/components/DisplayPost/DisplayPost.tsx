@@ -16,9 +16,13 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
   const [user,setUser] = useState<User>()
   const [comment,setComment] = useState<COMMENT[]>([])
   const [isLiked,setIsLiked] = useState<boolean>(false)
+ 
+  useEffect(() => {
+    const isLiked = posts.like.some((like) => like.user === user?.userId);
+    setIsLiked(isLiked);
+  }, [posts.like, user?.userId]); 
   useEffect(()=>{
-    const isLike = posts.like.some(like=>like.user === user?.userId)
-    setIsLiked(isLike)
+   
     const getUser = async()=>{
       try {
         const res = await UserApi.getUser(posts.user)
