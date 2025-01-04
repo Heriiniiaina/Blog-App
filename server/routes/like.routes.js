@@ -1,10 +1,10 @@
 import express from "express"
-import { likePost } from "../controllers/like.controller.js"
+import { likePost ,unlikePost} from "../controllers/like.controller.js"
 
 const router = express.Router()
 
 
 router.patch("/like-post",likePost)
-
+router.patch("/unlike-post",unlikePost)
 
 export default router
