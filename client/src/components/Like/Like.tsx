@@ -30,11 +30,22 @@ const Like = ({like,isLiked,postId,setIsLiked}:LikeProps) => {
       console.log(error)
     }  
   }
+  const removeLike = async()=>{
+    setIsLiked(false)
+    try {
+        const liked =await LikeApi.unlikePOst(postId,user?.userId)
+        const posts = await PostApi.getAllpost()
+        dispatch(setPost(posts))
+        console.log(liked)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   console.log(isLiked)
   return (
     <div className="">
         <div className="flex items-center gap-2">
-            {isLiked ?<button ><FaHeart className="text-[18px] text-red-500"/> </button> : <button><FaRegHeart className="text-[18px] text-red-500" onClick={handleLike}/></button> }
+            {isLiked ?<button ><FaHeart onClick={removeLike} className="text-[18px] text-red-500"/> </button> : <button><FaRegHeart className="text-[18px] text-red-500" onClick={handleLike}/></button> }
             <p className="text-[18px]">{like} Likes</p>
         </div>
        
