@@ -32,12 +32,13 @@ export const unlikePost=async(req,res,next)=>{
         const post = await getPostById(postId)
         if(!post)
             throw new ErrorHandler("Post non trouvé",404)
-        const like = post.like.filter(l=>l.user.toString()===userId)
+        const like = post.like.filter(l=>l.user===userId)
         post.like = like
         await post.save()
         res.status(200).json({
             success:true,
-            message:"Like supprimé"
+            message:"Like supprimé",
+            post:post.like
         })
     } catch (error) {
         next (new ErrorHandler(error.message,error.statusCode))
