@@ -58,7 +58,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
         </div>
         <div className="flex items-center justify-between">
           <Like like={posts.like.length} isLiked={isLiked} setIsLiked={setIsLiked} postId={posts._id}/>
-          <Comment comment={comment.length}/>
+          <Comment comment={comment.length} post={posts}/>
         </div>
         <hr />
         <PostComment user={user} post={posts}/>

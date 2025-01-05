@@ -7,6 +7,7 @@ import "./style.css"
 import Login from "./Pages/Login"
 import PublicRoute from "./components/ProtectedRoute/PublicRoute"
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute"
+import Post from "./Pages/Post/Post"
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
           </Route>
             <Route element={<PrivateRoute/>}>
               <Route path="/home" element={ <Home/>} />
-
+              <Route path="/post/:id" element={<Post/>} />
             </Route>
         </Routes>
     </BrowserRouter>
