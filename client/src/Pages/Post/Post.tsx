@@ -5,6 +5,7 @@ import Loading from "../../components/Loading/Loading"
 import { RootState } from "../../store/store"
 import { useSelector } from "react-redux"
 import { POST } from "../../Constants/PostInterface"
+import { getDate } from "../../services/data.service"
 
 
 
@@ -22,15 +23,23 @@ const Post = () => {
           </div>
     
     
-          <div className="flex h-full">
+          <div className="flex flex-col gap-3 h-full">
               <div className="info-user">
                   <div className="flex items-center gap-2">
                       <img src={post.user.image} alt="" className="rounded-full w-[50px] h-[50px]"/>
-                      <h1>{post.user.nom} {post.user.prenom}</h1>
+                      <div >
+                        <h1 className="text-xl">{post.user.nom} {post.user.prenom}</h1>
+                        <p className="text-sm text-gray-600">{getDate(post.createdAt)}</p>
+                      </div>
                   </div>
-                  <div>
-                      <p>{post.createdAt}</p>
-                  </div>
+              </div>
+              <div className="post-info">
+                 <div>
+                 <h1>{post.content}</h1>
+                  {
+                      post.image && <img src={post.image} alt="" className="w-[400px] h-[400px]"/>
+                  }
+                 </div>
               </div>
           </div>
         </div>
