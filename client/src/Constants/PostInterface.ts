@@ -1,6 +1,9 @@
+import { User } from "./UserInterface"
+
 interface Like{
     user:string,
-    post:string
+    post:string,
+    _id:string
 }
 export interface POST{
     _id:string,
@@ -9,5 +12,5 @@ export interface POST{
     createdAt:string,
     updatedAt:string,
     like:Like[],
-    user:string
+    user:User
 }
