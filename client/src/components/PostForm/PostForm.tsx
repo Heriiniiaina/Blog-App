@@ -8,18 +8,20 @@ import React, { useEffect, useState } from "react";
 import ButtonCustom from "../ButonCustom/ButtonCustom";
 import { PostApi } from "../../api/post.api";
 import { setLoading } from "../../store/slices/loading.slice";
-import { addPost } from "../../store/slices/post.slice";
+import { addPost, setPost } from "../../store/slices/post.slice";
 import { POST } from "../../Constants/PostInterface";
 import toast from "react-hot-toast";
 
+
 const PostForm = () => {
   const dispatch = useDispatch();
+  
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState("");
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const token = useSelector((store: RootState) => store.auth.token) || "";
   const user = jwtDecode(token) as User;
-
+  
   useEffect(() => {
     if (content.length > 0) {
       setIsDisabled(false);
@@ -35,6 +37,7 @@ const PostForm = () => {
   };
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     console.log(user.userId);
     const formData = new FormData();
     formData.append("content", content);
@@ -46,6 +49,9 @@ const PostForm = () => {
       console.log(res);
       const post = res.post as POST
         dispatch(addPost(post));
+        const posts = await PostApi.getAllpost() 
+        dispatch(setPost(posts))
+
     } catch (error:any) {
       
       toast.error(error.response.data.message);
