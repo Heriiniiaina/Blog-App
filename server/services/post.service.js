@@ -17,7 +17,7 @@ export const createNewPost = async (postData)=>{
 
 export const getAllPost = async ()=>{
     try {
-        const posts = await Post.find({})
+        const posts = await Post.find({}).populate("user")
         return posts
     } catch (error) {
         throw new ErrorHandler(error.message)
