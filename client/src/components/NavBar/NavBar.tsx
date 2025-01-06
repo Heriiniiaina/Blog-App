@@ -16,7 +16,7 @@ const NavBar = () => {
     const token = useSelector((store:RootState)=>store.auth.token)  || ""
     const user = jwtDecode(token) as User
   return (
-    <div className="bg-[#fff] p-3 flex items-center justify-between">
+    <div className="bg-[#fff] p-3 flex items-center justify-between shadow-md">
         <div>
             <Logo/>
         </div>

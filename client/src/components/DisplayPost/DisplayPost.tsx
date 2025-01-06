@@ -1,50 +1,50 @@
 import { useEffect, useState } from "react"
 import { POST } from "../../Constants/PostInterface"
 import { User } from "../../Constants/UserInterface"
-import { UserApi } from "../../api/user.api"
+
 import {getDate} from "../../services/data.service"
 import Like from "../Like/Like"
 import Comment from "../Comment/Comment"
 import PostComment from "../PostComment/PostComment"
 import { CommentApi } from "../../api/comment.api"
 import { COMMENT } from "../../Constants/CommentInterface"
+import { getUser } from "../../services/user.service"
 interface DisplayPostProps {
     posts: POST
 }
 
 const DisplayPost = ({posts}:DisplayPostProps) => {
-  const [user,setUser] = useState<User>()
+  const user = getUser() as User
   const [comment,setComment] = useState<COMMENT[]>([])
   const [isLiked,setIsLiked] = useState<boolean>(false)
  
   useEffect(() => {
     const isLiked = posts.like.some((like) => like.user === user?.userId);
     setIsLiked(isLiked);
-  }, [posts.like, user?.userId]); 
+  }, [posts.like]); 
   useEffect(()=>{
    
-    const getUser = async()=>{
+    const getComment = async()=>{
       try {
-        const res = await UserApi.getUser(posts.user)
+       
         const commt = await CommentApi.getPostComment(posts._id)
         setComment(commt.comment)
-        setUser(res.user)
+       
       } catch (error) {
         console.log(error)
       }
       
-      
     }
-    getUser()
+    getComment()
   },[])
   
   return (
     <div className="flex flex-col bg-[#ffffff] md:w-[600px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-400">
         <div className="user flex items-center gap-4" >
 
-          <img src={user?.image} alt="user" className="w-[50px] h-[50px] rounded-full"/>
+          <img src={posts.user.image} alt="user" className="w-[50px] h-[50px] rounded-full"/>
           <div>
-            <h3 className="text-xl font-bold">{user?.nom} {user?.prenom}</h3>
+            <h3 className="text-xl font-bold">{posts.user.nom} {posts.user.userId}</h3>
             <h5 className="text-sm">{getDate(posts.createdAt)}</h5>
           </div>
           
