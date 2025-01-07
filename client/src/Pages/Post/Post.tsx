@@ -13,6 +13,7 @@ import { User } from "../../Constants/UserInterface";
 import Comment from "../../components/Comment/Comment";
 import { COMMENT } from "../../Constants/CommentInterface";
 import { CommentApi } from "../../api/comment.api";
+import DisplayAllComment from "../../components/DisplayAllComment/DisplayAllComment";
 
 const Post = () => {
   const { id } = useParams();
@@ -43,7 +44,7 @@ const Post = () => {
   },[])
   return (
     <>
-      <div className="bg-[#f8f9fa]">
+      <div className="bg-[#fff]">
         <div className="sticky top-0 z-10">
           <NavBar />
         </div>
@@ -66,11 +67,11 @@ const Post = () => {
               </div>
             </div>
           </div>
-          <div className="post-info flex flex-col">
+          <div className="post-info flex flex-col gap-5">
             <div>
               <h1>{post.content}</h1>
               {post.image && (
-                <img src={post.image} alt="" className="w-[300px] h-[300px]" />
+                <img src={post.image} alt="" className="w-[400px] h-[400px]" />
               )}
             </div>
             <div className="flex justify-between">
@@ -88,6 +89,9 @@ const Post = () => {
         }
       >
         <Loading size="large" />
+      </div>
+      <div>
+          <DisplayAllComment comments={comment}/>
       </div>
     </>
   );
