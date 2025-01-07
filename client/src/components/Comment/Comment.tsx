@@ -11,7 +11,7 @@ const Comment = ({comment,post}:Props) => {
   const navigate = useNavigate()
   return (
     <div>
-        <button onClick={()=>navigate(`/post/${post._id}`)} className="cursor-pointer">{comment > 1 ? `${comment} comment`: `${comment} comments`}</button>
+        <button onClick={()=>navigate(`/post/${post._id}`)} className="cursor-pointer">{comment < 2 ? `${comment} comment`: `${comment} comments`}</button>
     </div>
   )
 }
