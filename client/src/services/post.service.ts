@@ -1,13 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { PostApi } from "../api/post.api";
-import { setPost } from "../store/slices/post.slice";
-import { POST } from "../Constants/PostInterface";
-import { RootState } from "../store/store";
+import { useSelector } from "react-redux"
+import { POST } from "../Constants/PostInterface"
+import { RootState } from "../store/store"
 
-export const getPost = (id?: string)  => {
-    const [post,setPost] = useState<POST>()
-    
 
+export const getPost = (id:string):POST=>{
+    const post = useSelector((store:RootState)=>store.posts.posts.find((post)=>post._id === id)) as POST
     return post
-};
+}

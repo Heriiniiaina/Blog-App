@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode';
 import { POST } from './../../Constants/PostInterface';
 import {createSlice,PayloadAction} from "@reduxjs/toolkit"
 
@@ -6,8 +7,11 @@ interface PostState{
     posts:POST[]
 }
 
+const token = sessionStorage.getItem("post-token")
+const decode =token ? jwtDecode(token) as { posts: POST[]; iat: number; exp: number } : null
+
 const initialState:PostState={
-    posts:[]
+    posts: decode ? decode.posts : [] 
 }
 
 const postSlice = createSlice({
