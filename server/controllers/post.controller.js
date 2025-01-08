@@ -2,6 +2,7 @@ import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { postSchema } from "../middlewares/validator.js"
 import { getUserById } from "../services/auth.service.js"
 import { createNewPost, getAllPost, getPostByUserId } from "../services/post.service.js"
+import { generatePostToken } from "../utils/token.helper.js"
 
 export const addNewPost = async(req,res,next)=>{
     const {content,userId} = req.body
@@ -28,10 +29,14 @@ export const addNewPost = async(req,res,next)=>{
 export const allPosts = async(req,res,next)=>{
     try {
         const posts = await getAllPost()
+        
+        const token = generatePostToken(posts)
         res.status(200).json({
-            posts
+            posts,
+            token
         })
     } catch (error) {
+        console.log(error)
         next(new ErrorHandler(error.message))
     }
 }

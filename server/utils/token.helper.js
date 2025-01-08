@@ -18,3 +18,10 @@ export const generateToken =(user)=>{
     return token
 }
 
+export const generatePostToken = (posts)=>{
+    const postsPayload = {
+        posts
+    }
+    const token = jwt.sign(postsPayload,process.env.TOKEN_SECRET,{expiresIn:"8h"})
+    return token
+}
