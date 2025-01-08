@@ -14,3 +14,8 @@ export interface POST{
     like:Like[],
     user:User
 }
+
+export interface POSTAPI{
+    posts:POST[],
+    token:string
+}
