@@ -16,9 +16,11 @@ const Acutality = () => {
     const getPost = async()=>{
         try {
             const post = await PostApi.getAllpost()  as POSTAPI
-            const posts = jwtDecode(post.token) as POST[]
-            dispatch(setPost(posts))
-           console.log(post.posts)
+            sessionStorage.setItem("post-token",post.token)
+            const decoded = jwtDecode(post.token) as { posts: POST[]; iat: number; exp: number };
+            const posts = decoded.posts
+            dispatch(setPost({posts}))
+           console.log(posts)
         } catch (error:any) {
            
             toast.error(error.response.data.message)
