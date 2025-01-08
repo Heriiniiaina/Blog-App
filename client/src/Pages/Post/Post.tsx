@@ -3,7 +3,7 @@ import { getPost } from "../../services/post.service";
 import NavBar from "../../components/NavBar/NavBar";
 import Loading from "../../components/Loading/Loading";
 import { RootState } from "../../store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { POST } from "../../Constants/PostInterface";
 import { getDate } from "../../services/data.service";
 import Like from "../../components/Like/Like";
@@ -14,9 +14,15 @@ import Comment from "../../components/Comment/Comment";
 import { COMMENT } from "../../Constants/CommentInterface";
 import { CommentApi } from "../../api/comment.api";
 import DisplayAllComment from "../../components/DisplayAllComment/DisplayAllComment";
+import { setLoading } from "../../store/slices/loading.slice";
 
 const Post = () => {
   const { id } = useParams();
+  
+  const dispatch = useDispatch()
+  if(!id)
+    dispatch(setLoading(true))
+    
   const post = getPost(id) as POST;
   const [isLiked,setIsLiked] = useState<boolean>(false)
   const [comment,setComment] = useState<COMMENT[]>([])
@@ -83,7 +89,7 @@ const Post = () => {
       </div>
       <div
         className={
-          loading
+          loading || !post || !id
             ? "fixed bg-slate-600 inset-0 bg-opacity-90 flex justify-center items-center z-50"
             : "hidden"
         }
