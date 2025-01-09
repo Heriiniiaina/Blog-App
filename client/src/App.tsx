@@ -8,6 +8,7 @@ import Login from "./Pages/Login"
 import PublicRoute from "./components/ProtectedRoute/PublicRoute"
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute"
 import Post from "./Pages/Post/Post"
+import Logout from "./components/Logout/Logout"
 
 const App = () => {
   return (
@@ -17,12 +18,14 @@ const App = () => {
           <Route element={<PublicRoute/>}>
             <Route path="/" element={<Login/>} />
             <Route path="/signup" element={<Register />} />
-
+           
           </Route>
             <Route element={<PrivateRoute/>}>
               <Route path="/home" element={ <Home/>} />
               <Route path="/post/:id" element={<Post/>} />
+              <Route path="/logout" element={<Logout/>}/>
             </Route>
+            
         </Routes>
     </BrowserRouter>
   )

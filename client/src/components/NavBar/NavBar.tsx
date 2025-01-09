@@ -7,6 +7,8 @@ import { jwtDecode } from "jwt-decode"
 import { RootState } from "../../store/store"
 import { FaBell, FaEnvelope,  FaSearch,  FaUserFriends } from "react-icons/fa"
 import { FaHouse } from "react-icons/fa6"
+import FloatMenu from "../FloatMenu/FloatMenu"
+import { useState } from "react"
 
 
 
@@ -15,6 +17,7 @@ import { FaHouse } from "react-icons/fa6"
 const NavBar = () => {
     const token = useSelector((store:RootState)=>store.auth.token)  || ""
     const user = jwtDecode(token) as User
+    const  [modal,setModal] = useState(false)
   return (
     <div className="bg-[#fff] p-3 flex items-center justify-between shadow-md">
         <div>
@@ -29,10 +32,15 @@ const NavBar = () => {
             <FaUserFriends className="text-xl"/>
             <FaBell className="text-xl"/>
             <FaEnvelope className="text-xl"/>
-            <div className="flex items-center gap-2">
-                <img src={user.image} alt="" className="rounded-full w-[50px] h-[50px]"/>
-                <h1>{user.nom} {user.prenom}</h1>
+            <button onClick={()=>setModal(!modal)}>
+                <div className="flex items-center gap-2">
+                    <img src={user.image} alt="" className="rounded-full w-[50px] h-[50px]"/>
+                    <h1>{user.nom} {user.prenom}</h1>
                
+                </div>
+            </button>
+            <div className={modal ? "absolute shadow-sm shadow-slate-700" : "hidden"} style={{right:"1%" , top:"70px"}}>
+                 <FloatMenu/>
             </div>
             
         </div>
