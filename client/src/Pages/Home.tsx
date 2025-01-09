@@ -3,7 +3,7 @@ import Acutality from "../components/Actuality/Acutality"
 import DisplayAllFriends from "../components/DisplayAllFriends.tsx/DisplayAllFriends"
 import NavBar from "../components/NavBar/NavBar"
 import PostForm from "../components/PostForm/PostForm"
-import Profile from "../components/ProfilePage/Profile"
+
 import { RootState } from "../store/store"
 import Loading from "../components/Loading/Loading"
 
@@ -23,7 +23,7 @@ const Home = () => {
 
       <div className="flex h-full">
         <div className="w-1/4 h-full hidden md:block bg-white  shadow-md shadow-gray-400 fixed">
-          <Profile />
+        
         </div>
 
 

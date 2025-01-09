@@ -9,6 +9,7 @@ import PublicRoute from "./components/ProtectedRoute/PublicRoute"
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute"
 import Post from "./Pages/Post/Post"
 import Logout from "./components/Logout/Logout"
+import Profile from "./Pages/Profile"
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
               <Route path="/home" element={ <Home/>} />
               <Route path="/post/:id" element={<Post/>} />
               <Route path="/logout" element={<Logout/>}/>
+              <Route path="/profile" element={<Profile/>}/>
             </Route>
             
         </Routes>
