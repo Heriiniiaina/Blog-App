@@ -7,6 +7,7 @@ export interface User{
     image:string,
     city:string,
     birth:string,
+    cover:string
 
 }
 export interface IFriend{

@@ -1,8 +1,18 @@
+import { User } from "../../Constants/UserInterface"
+import { InputFile } from "../InputFileComponent/InputFile"
 
-
-const DisplayUserInfo = () => {
+interface USERINFO{
+    user:User
+}
+const DisplayUserInfo = ({user}:USERINFO) => {
   return (
-    <div>DisplayUserInfo</div>
+    <div>
+        <div>
+            {
+                user.cover ? <img src={user.cover} alt="" /> : <InputFile/>
+            }
+        </div>
+    </div>
   )
 }
 

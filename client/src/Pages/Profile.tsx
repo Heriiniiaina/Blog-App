@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux"
 import DisplayUserInfo from "../components/DisplayUserInfo/DisplayUserInfo"
 import NavBar from "../components/NavBar/NavBar"
 
 
 const Profile = () => {
+  
   return (
     <div className="bg-[#f8f9fa] w-full">
 
@@ -11,7 +13,7 @@ const Profile = () => {
       </div>
       <div>
          <div>
-            <DisplayUserInfo/>
+            d
          </div>
          <div>
 

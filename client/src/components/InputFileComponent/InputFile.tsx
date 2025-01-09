@@ -3,7 +3,7 @@
 
 import { FileInput, Label } from "flowbite-react";
 
-export function Component() {
+export function InputFile() {
   return (
     <div className="flex w-full items-center justify-center">
       <Label
