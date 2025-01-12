@@ -19,12 +19,7 @@ const Profile = () => {
          <div className="absolute w-full z-0">
             <DisplayUserInfo user={user}/>
          </div>
-         <div
-          className="z-50 absolute"
-          style={{ top: "80%", left: "10%", transform: "translate(-50%, -50%)" }}
-        >
-          <img src={user.image} alt="" className="w-[70px] h-[70px]" />
-        </div>
+        
          <div>
 
          </div>
