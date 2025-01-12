@@ -40,7 +40,7 @@ const NavBar = () => {
                 </div>
             </button>
             <div className={modal ? "absolute shadow-sm shadow-slate-700" : "hidden"} style={{right:"1%" , top:"70px"}}>
-                 <FloatMenu/>
+                 <FloatMenu user={user}/>
             </div>
             
         </div>
