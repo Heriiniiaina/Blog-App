@@ -5,6 +5,7 @@ interface USERINFO {
   user: User;
 }
 const DisplayUserInfo = ({ user }: USERINFO) => {
+  console.log(user)
   return (
     <div>
       <div>{user.cover ? <img src={user.cover} alt="" /> : <InputFile />}</div>
