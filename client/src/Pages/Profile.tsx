@@ -4,10 +4,28 @@ import NavBar from "../components/NavBar/NavBar"
 import { RootState } from "../store/store"
 import { getUser } from "../services/user.service"
 import { User } from "../Constants/UserInterface"
+import { UserApi } from "../api/user.api"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 
 const Profile = () => {
- const user = getUser() as User
+  const {id} = useParams()
+  const [user,setUser] = useState<User>()
+  useEffect(()=>{
+      const getUser = async()=>{
+          if(!id)
+            return null
+          try {
+            const res = await UserApi.getUser(id)
+            setUser(res.user)
+          } catch (error) {
+            console.log(user)
+          }
+        
+      }
+      getUser()
+  },[id])
  console.log(user)
   return (
     <div className="bg-[#f8f9fa] w-full">
@@ -17,7 +35,7 @@ const Profile = () => {
       </div>
       <div className="relative">
          <div className="absolute w-full z-0">
-            <DisplayUserInfo user={user}/>
+          { user &&  <DisplayUserInfo user={user}/> }
          </div>
         
          <div>
