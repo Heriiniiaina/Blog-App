@@ -44,7 +44,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
 
           <img src={posts.user.image} alt="user" className="w-[50px] h-[50px] rounded-full"/>
           <div>
-            <h3 className="text-xl font-bold">{posts.user.nom} {posts.user.userId}</h3>
+            <h3 className="text-xl font-bold">{posts.user.nom} {posts.user.prenom}</h3>
             <h5 className="text-sm">{getDate(posts.createdAt)}</h5>
           </div>
           
