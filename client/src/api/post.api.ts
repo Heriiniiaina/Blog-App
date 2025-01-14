@@ -12,5 +12,8 @@ export class PostApi {
             }
         })).data
     }
+    static getUserPost = async(userId:string)=>{
+        return (await axios.get(`${BASE_URL}/get-user-post/${userId}`)).data
+    }
     
 }
