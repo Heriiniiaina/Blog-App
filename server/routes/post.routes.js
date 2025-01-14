@@ -5,5 +5,5 @@ const router = express.Router()
 
 router.post("/add-new-post",upload.single("image"),addNewPost)
 router.get("/get-all-post",allPosts)
-router.get("/get-user-post",getUserPosts)
+router.get("/get-user-post/:id",getUserPosts)
 export default router

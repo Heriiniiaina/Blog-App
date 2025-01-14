@@ -41,7 +41,7 @@ export const allPosts = async(req,res,next)=>{
     }
 }
 export const getUserPosts = async(req,res,next)=>{
-    const {userId} = req.body
+    const userId = req.params.id
     if(!userId)
         return next(new ErrorHandler("Auccun post",404))
     try {
