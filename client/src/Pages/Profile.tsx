@@ -7,6 +7,8 @@ import { User } from "../Constants/UserInterface"
 import { UserApi } from "../api/user.api"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import DisplayPost from "../components/DisplayPost/DisplayPost"
+import DisplayUserPost from "../components/DisplayUserPost/DisplayUserPost"
 
 
 const Profile = () => {
@@ -39,7 +41,7 @@ const Profile = () => {
          </div>
         
          <div>
-
+            <DisplayUserPost/>
          </div>
       </div>
     

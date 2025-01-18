@@ -1,17 +1,13 @@
-import { useSelector } from "react-redux"
-import { RootState } from "../../store/store"
-import { POST } from "../../Constants/PostInterface"
 
-interface DISPLAYUSERPOST{
-    userID:string,
-    posts:POST[]
-}
+import { useParams } from "react-router-dom"
 
-const DisplayUserPost = ({userID}:DISPLAYUSERPOST) => {
-    const posts = useSelector((store:RootState)=>store.posts.posts)
-    console.log(posts)
+
+const DisplayUserPost = () => {
+    
+    const {id} = useParams()
+    
     return (
-    <div>DisplayUserPost</div>
+    <div>  fuck{id}</div>
   )
 }
 
