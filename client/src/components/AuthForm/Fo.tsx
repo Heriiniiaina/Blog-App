@@ -5,6 +5,7 @@ import bg from "../../assets/Login-BG.png"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store/store"
 import Loading from "../Loading/Loading"
+import { Link } from "react-router-dom"
 
 interface AUTHFORM {
     type:"Login" | "Register"
@@ -38,8 +39,9 @@ const AuthForm = ({type,handleSubmit,handleChange}:AUTHFORM) => {
                 className="border border-black pl-2 p-1 rounded outline-none"
                 onChange={handleChange}
             />
-          
+            {type == 'Login' && <Link className="text-xs" to={"/forgot-pqssword"}>Mot de passe oublié ?</Link>}
             <ButtonCustom className="bg-blue-500  p-3 rounded text-cyan-50 self-stretch" type="submit">{loading ? <Loading size="small"/> : type=="Login" ? "Se connecter" : "S'inscrire"}   </ButtonCustom>
+            {type == "Login" ? <p>Vous n' avez pas encore de compte ? <Link to={"/signup"}>Cliquer ici</Link></p>: <p>Vous avez déja encore de compte ? <Link to={"/"}>Cliquer ici</Link></p>}
         </form>
         </div>
         
