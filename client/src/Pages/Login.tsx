@@ -7,6 +7,7 @@ import { login } from "../store/slices/auth.slice"
 
 import {jwtDecode} from "jwt-decode"
 import { setLoading } from "../store/slices/loading.slice"
+import toast from "react-hot-toast"
 
 interface User{
     userId:string,
@@ -34,8 +35,9 @@ const handleSubmit = async (e:React.FormEvent)=>{
         dispatch(login({user:userData,token:res.token}))
         sessionStorage.setItem("user-token",res.token)
         console.log(res)
-    } catch (error) {
+    } catch (error:any) {
         console.log(error)
+        toast.error(error.response.data.message)
     } finally{
         dispatch(setLoading(false))
     }
