@@ -7,7 +7,7 @@ const DisplayUserPost = () => {
     const {id} = useParams()
     
     return (
-    <div>  fuck{id}</div>
+    <div> {id}</div>
   )
 }
 
