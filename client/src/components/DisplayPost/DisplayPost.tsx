@@ -17,7 +17,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
   const user = getUser() as User
   const [comment,setComment] = useState<COMMENT[]>([])
   const [isLiked,setIsLiked] = useState<boolean>(false)
- 
+  
   useEffect(() => {
     const isLiked = posts.like.some((like) => like.user === user?.userId);
     setIsLiked(isLiked);
@@ -37,7 +37,7 @@ const DisplayPost = ({posts}:DisplayPostProps) => {
     }
     getComment()
   },[])
-  
+  console.log(posts)
   return (
     <div className="flex flex-col bg-[#ffffff] md:w-[600px] p-5 m-6 rounded-md gap-3 shadow-md shadow-gray-400">
         <div className="user flex items-center gap-4" >

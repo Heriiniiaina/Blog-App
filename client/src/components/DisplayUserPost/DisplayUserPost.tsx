@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { POST } from "../../Constants/PostInterface"
 import { PostApi } from "../../api/post.api"
+import DisplayPost from "../DisplayPost/DisplayPost"
 
 
 const DisplayUserPost = () => {
@@ -28,7 +29,13 @@ const DisplayUserPost = () => {
     }, [])
     console.log(posts)
     return (
-    <div> {id}</div>
+    <div> 
+      {
+        posts?.map((post,index)=>(
+          <DisplayPost posts={post} key={index}/>
+        ))
+      }
+    </div>
   )
 }
 
