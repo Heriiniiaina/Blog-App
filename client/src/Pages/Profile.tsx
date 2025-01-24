@@ -12,6 +12,7 @@ import DisplayUserPost from "../components/DisplayUserPost/DisplayUserPost";
 const Profile = () => {
   const { id } = useParams();
   const [user, setUser] = useState<User>();
+
   useEffect(() => {
     const getUser = async () => {
       if (!id) return null;
@@ -24,20 +25,23 @@ const Profile = () => {
     };
     getUser();
   }, [id]);
-  console.log(user);
+
   return (
     <div className="flex flex-col">
-      <div className="bg-[#f8f9fa] w-full ">
+     
+      <div className="bg-[#f8f9fa] w-full">
         <div className="sticky top-0 z-10">
           <NavBar />
         </div>
+
+      
         <div className="relative">
-          <div className="absolute w-full z-0">
-            {user && <DisplayUserInfo user={user} />}
-          </div>
+          {user && <DisplayUserInfo user={user} />}
         </div>
       </div>
-      <div>
+
+      
+      <div className="mt-4">
         <DisplayUserPost />
       </div>
     </div>
@@ -45,3 +49,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
